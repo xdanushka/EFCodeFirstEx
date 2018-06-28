@@ -15,10 +15,23 @@ namespace EFCodeFirstEx
                 var stud = new Student() { StudentName = "Bill" };
                 ctx.Students.Add(stud);
                 ctx.SaveChanges();
-                Console.WriteLine("Finished ");
+                Console.WriteLine("Stiudent Saved");
 
-                Student s = ctx.Students.First();
-                Console.WriteLine(s.StudentName);
+                var s = ctx.Students.First();
+                
+            }
+
+            using (var ctx = new InheritanceMappingContext())
+            {
+                var bnkAcc = new BankAccount()
+                {
+                    BankName = "NSB",
+                    Swift = "IDN"
+                };
+
+                ctx.BillingDetails.Add(bnkAcc);
+                ctx.SaveChanges();
+                Console.WriteLine("Billing Details Added");
             }
         }
     }
