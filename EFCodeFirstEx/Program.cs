@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -32,6 +33,17 @@ namespace EFCodeFirstEx
                 ctx.BillingDetails.Add(bnkAcc);
                 ctx.SaveChanges();
                 Console.WriteLine("Billing Details Added");
+
+                //Polymorphic Query
+                IQueryable<BillingDetail> linqQuery = from b in ctx.BillingDetails select b;
+                List<BillingDetail> billingDetails = linqQuery.ToList();
+                billingDetails.ForEach(detail => Console.WriteLine(detail.BillingDetailId.ToString()));
+
+                //Non Polymorphic Query
+                IQueryable<BankAccount> query = from b in ctx.BillingDetails.OfType<BankAccount>() select b;
+                List<BankAccount> bankDetails = query.ToList();
+                bankDetails.ForEach(detail => Console.WriteLine(detail.BankName.ToString()));
+
             }
         }
     }

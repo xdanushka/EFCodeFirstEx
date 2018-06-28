@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="BankAccount.cs" />
     <Compile Include="BillingDetail.cs" />
+    <Compile Include="Course.cs" />
     <Compile Include="CreditCard.cs" />
     <Compile Include="Grade.cs" />
     <Compile Include="InheritanceMappingContext.cs" />
